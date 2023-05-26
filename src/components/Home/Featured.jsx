@@ -17,6 +17,9 @@ const Featured = () => {
                 <div className="">
                     <p className='uppercase text-2xl text-white text-center lg:text-start'>Where can i get some?</p>
                     <p className='text-white mt-4 text-center lg:text-start'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque error ea fugiat possimus ad, repudiandae temporibus totam doloremque minima quasi nisi, quidem atque dicta dolor veniam reprehenderit praesentium iure dolore.</p>
+                    <div className="flex justify-center lg:justify-start mt-4">
+             <button className='p-3 font-semibold border-b-4 border-b-[#ffffff] rounded-md text-white'>VIEW FULL MENU</button>
+             </div>
                 </div>
 
             </div>
