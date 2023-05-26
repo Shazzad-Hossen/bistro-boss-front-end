@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      'cinzel': ['Cinzel', 'serif'],
+    },
+    extend: {
+      backgroundImage: {
+        'chef-service': "url('./src/assets/home/chef-service.jpg')",
+      }
+    },
   },
   plugins: [],
 }
