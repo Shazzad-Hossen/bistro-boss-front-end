@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../shared/SectionTitle';
 import MenuCard from '../shared/MenuCard';
+import { fetchMenu } from '../../utilities/apiCaller';
 
 const PopularMenu = () => {
     const [menu,setMenu]=useState([]);
-    console.log(menu)
-    useEffect(()=>{
-        fetch('./menu.json')
-        .then(res=>res.json()
-        .then(data=>setMenu(data.filter(items=>items.category==='popular'))));
+    const fetchData=async()=>{
+        const data= await fetchMenu('popular');
+        await setMenu(data);
+    }
+     useEffect(()=>{
+        fetchData();
+       
 
     },[])
     return (
