@@ -3,7 +3,7 @@ import img1 from '../../assets/home/slide1.jpg'
 
 const ItemCard = ({data}) => {
     return (
-        <div className='max-w-[424px]'>
+        <div className='max-w-[424px] '>
             <img className='h-[300px] object-cover  w-full' src={img1} alt="" />
             <div className="flex flex-col gap-5 justify-center items-center py-5 bg-[#F3F3F3]">
             <h1 className='font-bold text-xl'>Caeser Salad</h1>

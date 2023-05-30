@@ -5,12 +5,14 @@ import PopularMenu from "../components/Home/PopularMenu";
 import Recommends from "../components/Home/Recommends";
 import Featured from "../components/Home/Featured";
 import Testimonials from "../components/Home/Testimonials";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
     <div>
+      <Helmet><title>BISTRO BOSS | HOME</title></Helmet>
       <Banner />
-      <div className="px-10">
+      <div className="px-5">
         <Category />
 
         <div className="bg-chef-service bg-cover p-2 sm:p-8 md:p-20 my-20">
@@ -35,11 +37,11 @@ const Home = () => {
         <PopularMenu />
 
         <div className="bg-[#151515] h-[250px] w-full flex justify-center items-center">
-          <p className="text-white sm:text-5xl text-3xl font-cinzel text-center">Call Us: +8801645288850</p>
+          <p className="text-white sm:text-5xl text-2xl font-cinzel text-center">Call Us: +8801645288850</p>
 
         </div>
 
-        <div className="flex justify-center"><Recommends/></div>
+        <div className="flex justify-center "><Recommends/></div>
 
 
       </div>

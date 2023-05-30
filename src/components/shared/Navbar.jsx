@@ -10,13 +10,10 @@ const Navbar = () => {
     
 
     const navItems= <>
-    <Link to=''>HOME</Link>
-    <Link to=''>CONTACT US</Link>
-    <Link to=''>DASHBOARD</Link>
-    <Link to=''>OUR MENU</Link>
-    <Link to=''>OUR SHOP</Link>
-    <Link to=''>CART</Link>
-    <Link to=''>SIGN OUT</Link>
+    <Link to='/'>HOME</Link>
+    <Link to='/menu'>OUR MENU</Link>
+    <Link to='/order'>ORDER</Link>
+    
    
     </>
     return (
