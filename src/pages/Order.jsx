@@ -4,6 +4,10 @@ import PageBanner from '../components/shared/PageBanner';
 import bg from '../assets/shop/banner2.jpg'
 import { fetchMenu } from '../utilities/apiCaller';
 import ItemCard from '../components/shared/ItemCard';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper";
 
 
 
@@ -27,7 +31,15 @@ const Order = () => {
     }
     useEffect(()=>{
         fetchData();
-    },[tab])
+    },[tab]);
+
+    const pagination = {
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '">' + (index + 1) + "</span>";
+        },
+      };
+    
 
 
     return (
@@ -40,12 +52,23 @@ const Order = () => {
                    category.map((c,i)=> <button key={i} onClick={()=>setTab(c.index)} className={`uppercase font-cinzel text-lg ${tab===c.index? 'border-b-2 border-orange-700':''}`}>{c.value}</button>) 
                 }
              </div>
-             <div className="flex justify-center"><div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+             <Swiper
+        pagination={pagination}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+        <div className="flex justify-center"><div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {
                     menu.map((m,i)=> <ItemCard key={i} data={m}/>)
                 }
 
                 </div></div>
+        </SwiperSlide>
+ 
+       
+      </Swiper>
+             
             
         </div>
     );

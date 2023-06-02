@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdMenu,MdRestaurantMenu } from "react-icons/md";
 import logo from '../../assets/title-log.png'
+import { AuthContext } from '../../providers/AuthProviders';
 
 const Navbar = () => {
     const [menu,setMenu]=useState(false);
+    const {user, userSignOut}=useContext(AuthContext);
+   
+
     
 
     
@@ -13,9 +17,15 @@ const Navbar = () => {
     <Link to='/'>HOME</Link>
     <Link to='/menu'>OUR MENU</Link>
     <Link to='/order'>ORDER</Link>
+
+    {user? <button onClick={()=>userSignOut()}>SIGN OUT</button> :<><Link to='/signup'>SIGN UP</Link> <Link to='/signin'>SIGN IN</Link> </>
+    }
+
+
+    </>
     
    
-    </>
+   
     return (
         <div className='fixed z-10 max-w-[1280px] w-full'>
 

@@ -5,6 +5,8 @@ import Menu from "../pages/Menu";
 
 import { fetchMenu } from "../utilities/apiCaller";
 import Order from "../pages/Order";
+import Signin from "../pages/Signin";
+import SignUp from "../pages/SignUp";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -15,6 +17,8 @@ const router = createBrowserRouter([
         loader: async()=>{return await fetchMenu()} },
         { path: '/order', element: <Order/> ,
         loader: async()=>{return await fetchMenu()} },
+        { path: '/signin', element: <Signin/>},
+        { path: '/signup', element: <SignUp/>},
       ]
     },
   ]);
