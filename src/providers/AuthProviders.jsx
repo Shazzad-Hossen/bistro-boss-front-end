@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { app } from "../../configs/firebase.config";
+import { API } from "../utilities/variables";
+import axios from "axios";
 
 const auth= getAuth(app);
 export const AuthContext=createContext(null);
@@ -38,8 +40,19 @@ const AuthProviders = ({children}) => {
     useEffect(()=>{
         const unsubscribe= onAuthStateChanged(auth,loggedUser=>{
             setUser(loggedUser);
-            setLoading(false)
-            console.log(loggedUser);
+            //get and set token
+            if(loggedUser){
+                axios.post(`${API}/jwt`,{email: loggedUser.email})
+                .then(data=>{
+                    console.log(data.data);
+                    localStorage.setItem('bistro-access-token',data.data);
+                })
+            }
+            else {
+                localStorage.removeItem('bistro-access-token');
+            }
+            setLoading(false);
+           
         })
             
       

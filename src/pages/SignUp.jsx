@@ -7,6 +7,7 @@ import fbico from '../assets/icon/fb.png'
 import gitico from '../assets/icon/git.png'
 import googleico from '../assets/icon/google.png'
 import { AuthContext } from '../providers/AuthProviders';
+import { API } from '../utilities/variables';
 
 const SignUp = () => {
     const {user, userSignUP, googleSignin, fbSignin}=useContext(AuthContext)
@@ -34,6 +35,23 @@ const SignUp = () => {
     const signInwithGoogle=()=>{
     googleSignin()
     .then((result) => {
+      const name=result.user.displayName;
+      const email=result.user.email;
+      
+      fetch(`${API}/users`,{
+        method: 'POST',
+        headers: {
+          'content-type' : 'application/json'
+        },
+        body : JSON.stringify( {name,email })
+
+      })
+      .then(res=>res.json())
+      .then(()=>{
+        
+      });
+
+
         navigate("/");
        
       }).catch((error) => {
@@ -58,8 +76,21 @@ const SignUp = () => {
         else {
             userSignUP(email,password)
             .then((userCredential) => {
+
+
+              fetch(`${API}/users`,{
+                method: 'POST',
+                headers: {
+                  'content-type' : 'application/json'
+                },
+                body : JSON.stringify( {name,email })
+
+              })
+              .then(res=>res.json())
+              .then(data=>console.log(data));
+
                 
-                navigate("/");const user = userCredential.user;
+                navigate("/");
                 
               })
               .catch((error) => {

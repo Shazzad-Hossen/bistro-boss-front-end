@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Lottie from "lottie-react";
 import signinanim from "../assets/animations/login.json";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import fbico from '../assets/icon/fb.png'
 import gitico from '../assets/icon/git.png'
 import googleico from '../assets/icon/google.png'
+import { AuthContext } from '../providers/AuthProviders';
 
 const Signin = () => {
+    const {userSignIN}=useContext(AuthContext);
     const [eye,setEye]=useState(false);
     const [err,setErr]=useState("");
+    const location= useLocation();
+    const navigate= useNavigate();
+    const from= location.state?.from?.pathname || "/";
     useEffect(()=>{
         loadCaptchaEnginge(6); 
 
@@ -25,6 +30,21 @@ const Signin = () => {
         const capcha= form.capcha.value;
         if(password.length<6) setErr('Password must be at least 6 charecter');
         else if (validateCaptcha(capcha)==false) setErr('Invalid capcha validation');
+        else {
+            userSignIN(email,password)
+        .then((result) => {
+            navigate(from);
+           
+          }).catch((error) => {
+            
+            const errorMessage = error.message;
+            
+           
+           
+          });
+        }
+
+        
     }
 
     

@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom';
 import { MdMenu,MdRestaurantMenu } from "react-icons/md";
 import logo from '../../assets/title-log.png'
 import { AuthContext } from '../../providers/AuthProviders';
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from '../../hooks/useCart';
+
 
 const Navbar = () => {
     const [menu,setMenu]=useState(false);
     const {user, userSignOut}=useContext(AuthContext);
+    const [cart]= useCart();
    
 
     
@@ -17,6 +21,8 @@ const Navbar = () => {
     <Link to='/'>HOME</Link>
     <Link to='/menu'>OUR MENU</Link>
     <Link to='/order'>ORDER</Link>
+    <Link to='/dashboard'>DASHBOARD</Link>
+    <Link to='/mycart'><button className='flex items-center gap-1'><FaShoppingCart/> <span className='bg-[orange]  px-1 rounded-xl relative -top-2 text-sm text-black font-semibold'>{cart?.length || 0}</span></button></Link>
 
     {user? <button onClick={()=>userSignOut()}>SIGN OUT</button> :<><Link to='/signup'>SIGN UP</Link> <Link to='/signin'>SIGN IN</Link> </>
     }
